@@ -20,6 +20,17 @@ spec:
           ports:
             - containerPort: 7860
           command: ["python", "app.py"]
+          env:
+            - name: OPENAI_API_TYPE
+              value: "azure_ad"
+            - name: OPENAI_API_BASE
+              value: "https://llm-experiment.openai.azure.com/"
+            - name: OPENAI_API_VERSION
+              value: "2023-08-01-preview"
+            - name: TEMPERATURE
+              value: "0.9"
+            - name: DEPLOYMENT_NAME
+              value: "gpt-35-turbo"
 ---
 apiVersion: v1
 kind: Service

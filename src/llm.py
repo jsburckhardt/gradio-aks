@@ -1,26 +1,25 @@
 import os
 
 from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
 from langchain.chains import ConversationChain
 from langchain.chat_models import AzureChatOpenAI
 from langchain.memory import ConversationBufferMemory
 
-# Get the Azure Credential
-# credential = ChainedTokenCredential(ManagedIdentityCredential(), AzureCliCredential())
+# Set the Azure Credential
 credential = DefaultAzureCredential()
 
-# Set the API type to `azure_ad`
-# Set the API_KEY to the token from the Azure credential
-os.environ["OPENAI_API_TYPE"] = "azure_ad"
-os.environ["OPENAI_API_BASE"] = "https://llm-experiment.openai.azure.com/"
-os.environ["OPENAI_API_VERSION"] = "2023-05-15"
+# Load OPENAI_API_TYPE, OPENAI_API_BASE, OPENAI_API_VERSION
+load_dotenv()
+# Set OPENAI_API_KEY
 os.environ["OPENAI_API_KEY"] = credential.get_token(
     "https://cognitiveservices.azure.com/.default"
 ).token
 
+# print TEMPERATURE from .env
 llm = AzureChatOpenAI(
-    deployment_name="gpt-35-turbo",
-    temperature=0,
+    deployment_name=os.getenv("DEPLOYMENT_NAME"),
+    temperature=os.getenv("TEMPERATURE"),
 )
 
 # print(llm.predict("Hello, how are you?"))

@@ -25,6 +25,7 @@ tag-container: build-container
 push-container: tag-container
 	docker push $(REPO)gradio-aks:$(APP_VERSION)
 	docker push $(REPO)gradio-aks:latest
+	trivy image --format spdx-json -o build/sbom.spdx.json "$(REPO)gradio-aks:$(APP_VERSION)"
 
 gradio:
 	python src/app.py

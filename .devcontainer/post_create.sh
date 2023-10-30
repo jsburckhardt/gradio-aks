@@ -17,3 +17,11 @@ pip install --user -r requirements-dev.txt
 # install the pre-commit hooks
 pre-commit autoupdate
 pre-commit install
+
+# install trivy
+sudo apt update
+sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
