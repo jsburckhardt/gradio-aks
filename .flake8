@@ -1,0 +1,6 @@
+[flake8]
+exclude = .git,__pycache__,docs/source/conf.py
+ignore = E501
+
+build-container:
+	docker build -t $(REPO)gradio-aks:$(AGENT_VERSION) -f build/agent/Dockerfile .

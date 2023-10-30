@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gradio-aks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gradio-aks
+  template:
+    metadata:
+      labels:
+        app: gradio-aks
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: gradio-aks-sa
+      containers:
+        - name: gradio-aks
+          image: ghcr.io/jsburckhardt/gradio-aks:latest
+          ports:
+            - containerPort: 7860
+          command: ["python", "app.py"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gradio-aks
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 7860
+      targetPort: 7860
+  selector:
+    app: gradio-aks
