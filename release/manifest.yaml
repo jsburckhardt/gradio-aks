@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gradio-aks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gradio-aks
+  template:
+    metadata:
+      labels:
+        app: gradio-aks
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: gradio-aks-sa
+      containers:
+        - name: gradio-aks
+          image: ghcr.io/jsburckhardt/gradio-aks:latest
+          ports:
+            - containerPort: 7860
+          command: ["python", "app.py"]
+          env:
+            - name: OPENAI_API_TYPE
+              value: "azure_ad"
+            - name: OPENAI_API_BASE
+              value: "https://llm-experiment.openai.azure.com/"
+            - name: OPENAI_API_VERSION
+              value: "2023-08-01-preview"
+            - name: TEMPERATURE
+              value: "0.9"
+            - name: DEPLOYMENT_NAME
+              value: "gpt-35-turbo"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gradio-aks
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 7860
+      targetPort: 7860
+  selector:
+    app: gradio-aks

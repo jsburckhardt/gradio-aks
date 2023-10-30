@@ -1,0 +1,63 @@
+name: app_build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+  id-token: write
+
+env:
+  REGISTRY: ghcr.io
+  GH_USER: jsburckhardt
+  REPO_NAME: ${{ github.repository }}
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: pip install black flake8
+      - name: Run formatter
+        run: black --check src
+      - name: Run linter
+        run: flake8 src
+  release:
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        run: |
+          npm install @semantic-release/exec
+          npm install semantic-release-github
+          npm install @semantic-release/git
+          npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

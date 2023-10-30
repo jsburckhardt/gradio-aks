@@ -1,0 +1,8 @@
+azure-identity==1.14.0
+azure-monitor-opentelemetry-exporter==1.0.0b16
+gradio_client==0.6.1
+gradio==3.50.2
+langchain-experimental==0.0.36
+langchain==0.0.325
+openai==0.28.1
+python-dotenv==1.0.0

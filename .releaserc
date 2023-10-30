@@ -1,0 +1,35 @@
+{
+  "ci": false,
+  "branches": [
+    "main",
+    {
+      "name": "dev",
+      "prerelease": "beta"
+    },
+    {
+      "name": "[a-zA-Z0-9]+/[a-zA-Z0-9-]+",
+      "prerelease": "dev-${name.replace(/\\//g, '-')}"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "export APP_VERSION=${nextRelease.version} && make push-container"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "build/sbom.spdx.json",
+            "label": "sbom.spdx.json"
+          }
+        ]
+      }
+    ]
+  ]
+}
