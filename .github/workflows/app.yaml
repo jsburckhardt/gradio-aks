@@ -26,6 +26,21 @@ env:
 
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: pip install black flake8
+      - name: Run formatter
+        run: black --check src
+      - name: Run linter
+        run: flake8 src
   release:
     if: ${{ github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
