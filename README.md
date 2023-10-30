@@ -12,6 +12,8 @@ For a detailed walkthrough on Azure Managed Identities with Workload Identity Fe
 
 - [How to configure Azure OpenAI Service with managed identities - Azure OpenAI | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/managed-identity)
 
+- [AKS workload identities](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=python)
+
 ## Features
 
 - Run the application locally in the devcontainer
