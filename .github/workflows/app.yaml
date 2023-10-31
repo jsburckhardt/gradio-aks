@@ -23,6 +23,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
+  GH_USER: jsburckhardt
   REPO_NAME: ${{ github.repository }}
 
 
