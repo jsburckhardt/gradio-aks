@@ -42,7 +42,6 @@ IMAGE_LATEST=$REGISTRY/$REPO_NAME/chatbot:latest
 echo "IMAGE: $IMAGE"
 
 echo "Building and pushing image"
-cat Dockerfile
 docker build -t "$IMAGE" -f Dockerfile ..
 docker tag "$IMAGE" "$IMAGE_LATEST"
 docker push "$IMAGE"
