@@ -46,6 +46,11 @@ jobs:
     # needs: test
     # if: ${{ needs.test.result == 'success' && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
