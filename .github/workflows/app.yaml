@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - 'src/**'
+      - '.github/**'
   pull_request:
     branches:
       - main
     paths:
       - 'src/**'
+      - '.github/**'
   workflow_dispatch:
 
 permissions:
