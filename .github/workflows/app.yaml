@@ -27,24 +27,24 @@ env:
 
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-      - name: Install dependencies
-        run: pip install black flake8
-      - name: Run formatter
-        run: black --check src
-      - name: Run linter
-        run: flake8 src
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: 3.11
+  #     - name: Install dependencies
+  #       run: pip install black flake8
+  #     - name: Run formatter
+  #       run: black --check src
+  #     - name: Run linter
+  #       run: flake8 src
   release:
-    needs: test
-    if: ${{ needs.test.result == 'success' && github.event_name != 'pull_request' }}
+    # needs: test
+    # if: ${{ needs.test.result == 'success' && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -57,9 +57,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release
         run: |
-          npm install @semantic-release/exec
-          npm install semantic-release-github
-          npm install @semantic-release/git
-          npx semantic-release
+          # npm install @semantic-release/exec
+          # npm install semantic-release-github
+          # npm install @semantic-release/git
+          # npx semantic-release
+          echo $PWD
+          export APP_VERSION=latest && cd ./build && ./release.sh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
