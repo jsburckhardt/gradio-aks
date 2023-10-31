@@ -3,7 +3,7 @@
 set -euo pipefail
 
 echo "Validating environment variables"
-
+echo "$PWD"
 if [[ -z "${REGISTRY}" ]]; then
     echo "REGISTRY environment variable is not set"
     exit 1

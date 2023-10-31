@@ -17,7 +17,7 @@ lint:
 	flake8 src/
 
 build-container:
-	docker build -t $(REPO)chatbot:$(APP_VERSION) -f build/Dockefile .
+	docker build -t $(REPO)chatbot:$(APP_VERSION) -f build/Dockerfile .
 
 tag-container: build-container
 	docker tag $(REPO)chatbot:$(APP_VERSION) $(REPO)chatbot:latest
