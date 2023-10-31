@@ -42,6 +42,7 @@ jobs:
       - name: Run linter
         run: flake8 src
   release:
+    needs: test
     if: ${{ github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     steps:

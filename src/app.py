@@ -1,8 +1,15 @@
+import os
+
 import gradio as gr
+from dotenv import load_dotenv
 
 from llm import conversation
 
-with gr.Blocks() as demo:
+# Load model name from .env
+load_dotenv()
+deployment_name = os.getenv("DEPLOYMENT_NAME")
+
+with gr.Blocks(title=deployment_name) as demo:
     chatbot = gr.Chatbot()
     prompt = gr.Textbox(placeholder="Enter your message here...")
     clear = gr.ClearButton([prompt, chatbot])

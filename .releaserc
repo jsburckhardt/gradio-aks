@@ -17,7 +17,7 @@
     [
       "@semantic-release/exec",
       {
-        "publishCmd": "export APP_VERSION=${nextRelease.version} && make push-container"
+        "publishCmd": "export RELEASE=${nextRelease.version} && make push-container"
       }
     ],
     [
