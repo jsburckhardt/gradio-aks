@@ -23,7 +23,7 @@ For a detailed walkthrough on Azure Managed Identities with Workload Identity Fe
 ## Pre-requisites
 
 - Resource group with Azure OpenAI
-- Azure OpeanAI deployments (depends the deployement you want to use): `gpt-35-turbo`, `gpt-4`
+- Azure OpeanAI deployments (depends the deployement you want to use): `gpt-35-turbo`, `gpt-4` -- a helper script can be found under `infra/pre-requisites.sh`
 
 ## Running the Application Locally
 

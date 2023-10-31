@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
 # Set variables
-RESOURCE_GROUP="rsg-bunnings-swiftsolve-01"
+RESOURCE_GROUP="rsg-swiftsolve-01"
 LOCATION="australiaeast"
 SERVICE_ACCOUNT_NAMESPACE="default"
 SERVICE_ACCOUNT_NAME="gradio-aks-sa"
-CLUSTER_NAME="aks-bunnings-swiftsolve-01"
+CLUSTER_NAME="aks-swiftsolve-01"
 ACR="amldsworkspaceacr"
 
 # Create AKS cluster
