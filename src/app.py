@@ -11,7 +11,7 @@ deployment_name = os.getenv("DEPLOYMENT_NAME")
 
 with gr.Blocks(title=deployment_name) as demo:
     chatbot = gr.Chatbot()
-    prompt = gr.Textbox(placeholder="Enter your message here...")
+    prompt = gr.Textbox(placeholder="How can I help today?...")
     clear = gr.ClearButton([prompt, chatbot])
     clear.click(conversation.memory.clear)
 
