@@ -67,6 +67,7 @@ jobs:
           # npm install @semantic-release/git
           # npx semantic-release
           echo $PWD
+          echo $GH_TOKEN | docker login ghcr.io -u jsburckhardt --password-stdin
           export APP_VERSION=latest && cd ./build && ./release.sh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
