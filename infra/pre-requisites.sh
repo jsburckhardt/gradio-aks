@@ -23,7 +23,7 @@ echo "Resource group validated."
 
 # Create openai workspace if it doesn't exist
 echo "Creating OpenAI workspace..."
-az cognitiveservices account show -n $OPENAI_NAME -g $RESOURCE_GROUP || az cognitiveservices account create --name $OPENAI_NAME --resource-group $RESOURCE_GROUP --location $LOCATION --kind OpenAI --sku s0 --yes || exit 1
+az cognitiveservices account show -n $OPENAI_NAME -g $RESOURCE_GROUP || az cognitiveservices account create --name $OPENAI_NAME --resource-group $RESOURCE_GROUP --location $LOCATION --kind OpenAI --sku s0 --custom-domain $OPENAI_NAME --yes || exit 1
 echo "OpenAI workspace created."
 
 # Create a deployment GPT_35_TURBO and GPT_4
