@@ -24,7 +24,7 @@ spec:
             - name: OPENAI_API_TYPE
               value: "azure_ad"
             - name: OPENAI_API_BASE
-              value: "https://llm-experiment.openai.azure.com/"
+              value: "https://aoai-swiftsolve-01.openai.azure.com/"
             - name: OPENAI_API_VERSION
               value: "2023-08-01-preview"
             - name: TEMPERATURE
