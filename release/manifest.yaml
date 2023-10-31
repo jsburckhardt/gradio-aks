@@ -16,7 +16,7 @@ spec:
       serviceAccountName: gradio-aks-sa
       containers:
         - name: gradio-aks
-          image: ghcr.io/jsburckhardt/gradio-aks:latest
+          image: ghcr.io/jsburckhardt/gradio-aks/chatbot:latest
           ports:
             - containerPort: 7860
           command: ["python", "app.py"]
