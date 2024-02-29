@@ -1,6 +1,6 @@
 azure-identity==1.14.0
 gradio_client==0.6.1
-gradio==3.50.2
+gradio==4.19.2
 langchain-experimental==0.0.36
 langchain==0.0.329
 openai==0.28.1
